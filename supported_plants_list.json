@@ -1,0 +1,240 @@
+{
+    "Ocimum basilicum": {
+        "common_name": "Sweet basil",
+        "description": "Ocimum basilicum is a culinary herb in the family Lamiaceae. It is commonly used in Italian, Thai, and Vietnamese cuisine.",
+        "optimal_temperature": "18-25C (64-77F)",
+        "optimal_humidity": "40-50%",
+        "optimal_insolation": "Full sun to partial shade"
+    },
+    "Origanum vulgare": {
+        "common_name": "Common oregano",
+        "description": "Origanum vulgare is a perennial herb in the mint family. It is commonly used in Mediterranean and Mexican cuisine.",
+        "optimal_temperature": "20-25C (68-77F)",
+        "optimal_humidity": "40-60%",
+        "optimal_insolation": "Full sun to partial shade"
+    },
+    "Rosa red": {
+        "common_name": "Red rose",
+        "description": "Rosa is a genus of woody perennial flowering plants in the family Rosaceae. The red rose is a popular ornamental plant.",
+        "optimal_temperature": "15-25C (59-77F)",
+        "optimal_humidity": "40-60%",
+        "optimal_insolation": "Full sun to partial shade"
+    },
+    "Lilium white": {
+        "common_name": "White lily",
+        "description": "Lilium is a genus of herbaceous flowering plants in the family Liliaceae. The white lily is a popular ornamental plant.",
+        "optimal_temperature": "18-22C (64-72F)",
+        "optimal_humidity": "50-70%",
+        "optimal_insolation": "Partial shade"
+    },
+    "Lilium": {
+        "common_name": "Red Lily",
+        "description": "Red lilies prefer a cool and humid environment, with temperatures between 50-70F (10-21C) and humidity levels around 50-60%. They thrive in bright, indirect light.",
+        "optimal_humidity": "50-60%",
+        "optimal_temperature": "10-21C (50-70F)",
+        "optimal_insolation": "Bright, indirect light"
+    },
+    "Taraxacum officinale": {
+        "common_name": "Dandelion",
+        "description": "Dandelions are hardy plants that can tolerate a wide range of conditions, but they prefer cool temperatures and plenty of moisture. They grow best in full sun to partial shade.",
+        "optimal_humidity": "40-60%",
+        "optimal_temperature": "10-21C (50-70F)",
+        "optimal_insolation": "Full sun to partial shade"
+    },
+    "Leucanthemum vulgare": {
+        "common_name": "Oxeye Daisy",
+        "description": "Oxeye daisies prefer cooler temperatures and moderate humidity levels. They grow best in full sun to partial shade.",
+        "optimal_humidity": "40-60%",
+        "optimal_temperature": "10-24C (50-75F)",
+        "optimal_insolation": "Full sun to partial shade"
+    },
+    "Petroselinum crispum": {
+        "common_name": "Parsley",
+        "description": "Parsley prefers moderate temperatures and humidity levels. It grows best in full sun to partial shade.",
+        "optimal_humidity": "40-60%",
+        "optimal_temperature": "15-21C (60-70F)",
+        "optimal_insolation": "Full sun to partial shade"
+    },
+    "Saintpaulia ionantha": {
+        "common_name": "African Violet",
+        "description": "African violets prefer warm and humid environments, with temperatures between 65-75F (18-24C) and humidity levels around 50-60%. They grow best in bright, indirect light.",
+        "optimal_humidity": "50-60%",
+        "optimal_temperature": "18-24C (65-75F)",
+        "optimal_insolation": "Bright, indirect light"
+    },
+    "Aloe vera": {
+        "common_name": "Aloe Vera",
+        "description": "Aloe vera prefers warm and dry environments, with temperatures between 60-85F (15-29C) and low humidity levels. It grows best in bright, direct light.",
+        "optimal_humidity": "10-30%",
+        "optimal_temperature": "15-29C (60-85F)",
+        "optimal_insolation": "Bright, direct light"
+    },
+    "Crassula Ovata": {
+        "common_name": "Jade Plant",
+        "description": "A succulent plant with small, round, fleshy leaves.",
+        "temperature": "18-24C (65-75F)",
+        "humidity": "30-50%",
+        "insolation": "Bright, indirect light"
+    },
+    "Monstera Deliciosa": {
+        "common_name": "Swiss Cheese Plant",
+        "description": "A tropical vine with large, fenestrated leaves.",
+        "temperature": "18-27C (65-80F)",
+        "humidity": "40-60%",
+        "insolation": "Bright, indirect light"
+    },
+    "Phalaenopsis": {
+        "common_name": "Moth Orchid",
+        "description": "An epiphytic orchid with showy, fragrant flowers.",
+        "temperature": "18-24C (65-75F)",
+        "humidity": "50-70%",
+        "insolation": "Indirect light"
+    },
+    "Begonia": {
+        "common_name": "Begonia",
+        "description": "A flowering plant with showy, colorful blooms.",
+        "temperature": "18-24C (65-75F)",
+        "humidity": "40-60%",
+        "insolation": "Bright, indirect light"
+    },
+    "Calathea": {
+        "common_name": "Calathea",
+        "description": "A tropical plant with strikingly patterned leaves.",
+        "temperature": "18-24C (65-75F)",
+        "humidity": "60-70%",
+        "insolation": "Bright, indirect light"
+    },
+    "Dracaena marginata": {
+        "common_name": "Dragon Tree",
+        "description": "A tall, slender plant with spiky leaves.",
+        "temperature": "18-27C (65-80F)",
+        "humidity": "40-50%",
+        "insolation": "Bright, indirect light"
+    },
+    "Hedera helix": {
+        "common_name": "English Ivy",
+        "description": "A climbing vine with small, lobed leaves.",
+        "temperature": "15-21C (60-70F)",
+        "humidity": "40-50%",
+        "insolation": "Bright, indirect light"
+    },
+    "Sansevieria trifasciata": {
+        "common_name": "Snake Plant",
+        "description": "A hardy plant with tall, upright leaves that are often variegated with shades of green and yellow. It is known for its air-purifying abilities and ability to tolerate low light and neglect.",
+        "optimal_humidity": "30-50%",
+        "optimal_temperature": "16-29C (60-85F)",
+        "optimal_insolation": "Low to bright indirect light"
+    },
+    "Epipremnum aureum": {
+        "common_name": "Pothos",
+        "description": "A trailing vine with heart-shaped leaves that can be green or variegated with shades of yellow or white. It is a popular indoor plant due to its ease of care and ability to tolerate low light and varying levels of humidity.",
+        "optimal_humidity": "40-60%",
+        "optimal_temperature": "18-29C (65-85F)",
+        "optimal_insolation": "Low to bright indirect light"
+    },
+    "Zamioculcas zamiifolia": {
+        "common_name": "ZZ Plant",
+        "description": "A tropical plant with glossy, dark green leaves that grow on long, upright stems. It is known for its tolerance of low light, drought, and neglect.",
+        "optimal_humidity": "40-60%",
+        "optimal_temperature": "16-24C (60-75F)",
+        "optimal_insolation": "Low to bright indirect light"
+    },
+    "Chlorophytum comosum": {
+        "common_name": "Spider Plant",
+        "description": "A plant with long, slender leaves that grow in a rosette and often produce small plantlets on long, arching stems. It is known for its air-purifying abilities and ease of care.",
+        "optimal_humidity": "40-50%",
+        "optimal_temperature": "16-24C (60-75F)",
+        "optimal_insolation": "Bright indirect light"
+    },
+    "Spathiphyllum wallisii": {
+        "common_name": "Peace Lily",
+        "description": "A tropical plant with glossy, dark green leaves and elegant white flowers that bloom throughout the year. It is known for its air-purifying abilities and ability to tolerate low light and neglect.",
+        "optimal_humidity": "40-60%",
+        "optimal_temperature": "16-29C (60-85F)",
+        "optimal_insolation": "Low to bright indirect light"
+    },
+    "Philodendron": {
+        "common_name": "Philodendron",
+        "description": "A large and diverse group of tropical plants with glossy, heart-shaped leaves that come in a variety of colors and patterns. They are known for their air-purifying abilities and ease of care.",
+        "optimal_humidity": "40-60%",
+        "optimal_temperature": "18-24C (65-75F)",
+        "optimal_insolation": "Low to bright indirect light"
+    },
+    "Ficus elastica": {
+        "common_name": "Rubber Plant",
+        "description": "A large, upright plant with glossy, leathery leaves that can be dark green or variegated with shades of pink, white, or yellow. It is known for its air-purifying abilities and ability to tolerate low to bright light.",
+        "optimal_humidity": "40-60%",
+        "optimal_temperature": "16-24C (60-75F)",
+        "optimal_insolation": "Medium to bright indirect light"
+    },
+    "Monstera deliciosa": {
+        "common_name": "Monstera Deliciosa",
+        "description": "A tropical plant with large, fenestrated leaves that grow on long, vining stems. It is known for its striking appearance and ability to tolerate low to medium light levels.",
+        "optimal_humidity": "50-60%",
+        "optimal_temperature": "18-29C (65-85F)",
+        "optimal_insolation": "Medium to bright indirect light"
+    },
+    "Aglaonema": {
+        "common_name": "Chinese Evergreen",
+        "description": "A group of tropical plants with variegated leaves that come in shades of green, silver, or pink. They are known for their air-purifying abilities and ability to tolerate low light and varying levels of humidity.",
+        "optimal_humidity": "40-60%",
+        "optimal_temperature": "16-24C (60-75F)",
+        "optimal_insolation": "Low to medium indirect light"
+    },
+    "Nephrolepis exaltata": {
+        "common_name": "Boston Fern",
+        "description": "A popular fern with delicate, feathery fronds that grow on long, arching stems. It is known for its air-purifying abilities and ability to tolerate low light and high humidity.",
+        "optimal_humidity": "50-80%",
+        "optimal_temperature": "16-24C (60-75F)",
+        "optimal_insolation": "Low to medium indirect light"
+    },
+    "Mentha": {
+        "common_name": "Mint",
+        "description": "A group of aromatic herbs with small, serrated leaves that come in a variety of flavors such as peppermint, spearmint, and chocolate mint. They are often grown indoors for culinary use and can also be used for medicinal purposes.",
+        "optimal_humidity": "40-50%",
+        "optimal_temperature": "16-21C (60-70F)",
+        "optimal_insolation": "Medium to bright indirect light"
+    },
+    "Thymus vulgaris": {
+        "common_name": "Thyme",
+        "description": "A fragrant herb with small, gray-green leaves that grow on woody stems. It is often used in cooking and has medicinal properties as well.",
+        "optimal_humidity": "40-50%",
+        "optimal_temperature": "16-21C (60-70F)",
+        "optimal_insolation": "Full sun"
+    },
+    "Rosmarinus officinalis": {
+        "common_name": "Rosemary",
+        "description": "An aromatic herb with needle-like leaves that are often used in cooking. It is known for its pungent fragrance and flavor, as well as its ornamental value.",
+        "optimal_humidity": "30-50%",
+        "optimal_temperature": "16-21C (60-70F)",
+        "optimal_insolation": "Full sun"
+    },
+    "Salvia officinalis": {
+        "common_name": "Sage",
+        "description": "A flavorful herb with soft, gray-green leaves that are often used in cooking. It has a pungent aroma and flavor and is known for its medicinal properties as well.",
+        "optimal_humidity": "30-50%",
+        "optimal_temperature": "16-21C (60-70F)",
+        "optimal_insolation": "Full sun to partial shade"
+    },
+    "Allium schoenoprasum": {
+        "common_name": "Chives",
+        "description": "A flavorful herb with long, slender leaves that have a mild onion flavor. They are often used as a garnish or in salads and soups.",
+        "optimal_humidity": "40-50%",
+        "optimal_temperature": "16-21C (60-70F)",
+        "optimal_insolation": "Full sun to partial shade"
+    },
+    "Coriandrum sativum": {
+        "common_name": "Cilantro",
+        "description": "A fragrant herb with delicate, lacy leaves that are often used in Latin and Asian cuisine. The seeds of the plant are known as coriander and are also used as a spice.",
+        "optimal_humidity": "40-50%",
+        "optimal_temperature": "10-29C (50-85F)",
+        "optimal_insolation": "Full sun to partial shade"
+    },
+    "Anethum graveolens": {
+        "common_name": "Dill",
+        "description": "An aromatic herb with feathery, green leaves that are often used in pickling and other culinary applications. It is also used for medicinal purposes.",
+        "optimal_humidity": "40-50%",
+        "optimal_temperature": "16-21C (60-70F)",
+        "optimal_insolation": "Full sun to partial shade"
+    }
+}

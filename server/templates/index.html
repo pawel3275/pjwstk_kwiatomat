@@ -1,0 +1,28 @@
+<h1>Welcome on kwiatomat main page!</h1>
+<table>
+    <thead>
+      <tr>
+        <th>Key</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for key, value in result.items() %}
+     <tr>
+         <td> {{ key }} </td>
+         <td> {{ value }} </td>
+     </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+<h1>SERVER APIs</h1>
+<dl>
+  <dt>[POST] /file-upload</dt>
+  <dd>The public API point for file prediction to use it simply run `curl --location --request POST http://localhost:5000/file-upload -F file=@test_r_r.jpeg`</dd>>
+  <dt>[GET] /download-training-data</dt>
+  <dd>Scrape images from internet and preprocess them for the model</dd>>
+  <dt>[GET] /preprocess_data</dt>
+  <dd>Preprocess the data with data augumentation and train model</dd>>
+  <dt>[GET] /predict-image</dt>
+  <dd>Used mostly for debug purposes to predict local image</dd>>
+</dl>

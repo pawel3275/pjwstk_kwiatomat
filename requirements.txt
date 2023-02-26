@@ -1,0 +1,10 @@
+bing_image_downloader
+duckduckgo_search
+click
+flask==2.1.0
+flask_restful
+matplotlib
+opencv-python
+opendatasets
+pandas
+tensorflow
