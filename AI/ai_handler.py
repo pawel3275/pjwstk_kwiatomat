@@ -3,10 +3,12 @@ from .model_preparing import MlModel
 import tensorflow as tf
 from pathlib import Path
 import numpy as np
+from .plant_rest_handler import PlantRestHandler
+from difflib import SequenceMatcher
 
 class AiHandler:
     def __init__(self) -> None:
-        
+        self.enable_fallback = True
         self.model_preprocessor = MlModel()
         self.model_path = None
         self.validation_data = None
@@ -34,6 +36,17 @@ class AiHandler:
     def load_model(self, path):
         self.model = tf.keras.models.load_model(path)
 
+    def compare_strings(self, target_string, string_list):
+        max_score = 0
+        best_match = ""
+        for string in string_list:
+            score = SequenceMatcher(None, target_string, string).ratio()
+            if score > max_score:
+                max_score = score
+                best_match = string
+        print(f"BEST MATCH IS {best_match}")
+        return best_match
+
     def predict_image(self, server_state, image_path):
         image_path = "D:/scratch/inzynierka/test_r_r.jpeg"
         image_preprocessor = ImagePreprocessing()
@@ -42,9 +55,14 @@ class AiHandler:
             self.load_model(server_state.model_path)
         if not self.class_names:
             self.class_names = server_state.supported_plants
+
         prediction = self.model.predict(input_data)
-        print(f"PREDICTION IS {prediction}")
         label = self.class_names[np.argmax(prediction)]
+        if self.enable_fallback:
+            fallback_common_name, fallback_plant_name = PlantRestHandler.identify_plant(image_path)
+            print(f"Fallback response is {fallback_common_name} and {fallback_plant_name}")
+            label = self.compare_strings(fallback_plant_name, server_state.supported_plants)
+
         print(f"LABEL IS {label}")
         print(f"json output will be: \n\n {server_state.plants_info[label]}")
         return server_state.plants_info[label]

@@ -13,7 +13,6 @@ import os
 from exceptions.exception_handler import ErroneousImagePath
 from AI.image_processing import ImagePreprocessing
 from AI.model_preparing import MlModel
-from .plant_rest_handler import PlantRestHandler
 import logging
 from .image_downloader import ImageDownloader
 from server.server_state import ServerState
@@ -50,8 +49,8 @@ def upload_file():
 
 		handler = AiHandler()
 		response = handler.predict_image(server_state, path_for_image)
+
 		print(f"Response for plant recognition was {response}")
-		#return resp
 		os.remove(path_for_image)
 		print(f"Everything done, removing file: {path_for_image}")
 		resp = jsonify({'message' : response})

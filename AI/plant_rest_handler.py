@@ -21,8 +21,12 @@ class PlantRestHandler():
                 "Content-Type": "application/json",
                 "Api-Key": "Hh6ioRt9mvdw07XdjifsUlXspgFyX9jLREfCRWkZMbcUscGqJn",
         }).json()
-        print(response)
-        for suggestion in response["suggestions"]:
-            print(suggestion["plant_name"])    # Taraxacum officinale
-            print(suggestion["plant_details"]["common_names"])    # ["Dandelion"]
-            print(suggestion["plant_details"]["url"])    # https://en.wikipedia.org/wiki/Taraxacum_officinale
+        # print(response)
+        #for suggestion in response["suggestions"]:
+        #    print(suggestion["plant_name"])    # Taraxacum officinale
+        #    print(suggestion["plant_details"]["common_names"])    # ["Dandelion"]
+        #    print(suggestion["plant_details"]["url"])    # https://en.wikipedia.org/wiki/Taraxacum_officinale
+        best_match = response["suggestions"][0]
+        common_name = best_match["plant_details"]["common_names"]
+        plant_name = best_match["plant_name"]
+        return common_name, plant_name
