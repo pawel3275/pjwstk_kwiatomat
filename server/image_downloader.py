@@ -1,13 +1,16 @@
-from bing_image_downloader import downloader
-from duckduckgo_search import ddg_images  # https://pypi.org/project/duckduckgo-search/
-from pathlib import Path
-import shutil
 import imghdr
+import json
+import os
+import shutil
+import time
+from pathlib import Path
+
 # from PIL import Image
 import PIL
-import os
-import time
-import json
+from bing_image_downloader import downloader
+from duckduckgo_search import \
+    ddg_images  # https://pypi.org/project/duckduckgo-search/
+
 
 class ImageDownloader:
     def __init__(self) -> None:
@@ -59,8 +62,6 @@ class ImageDownloader:
                 try:
                     each_file.rename(trg_path.joinpath(each_file.name)) # moves to parent folder.
                 except Exception as exc:
-                    print(f"\nCannot move file {each_file.name} to {trg_path} due to {exc}")
-                    print(f"Removing file for safety reasons...\n")
                     each_file.unlink()
             shutil.rmtree(folder_path[0])
         else:
@@ -70,7 +71,6 @@ class ImageDownloader:
     def remove_unwanted_files(self):
         for path in Path('dataset').rglob('*'):
             if str(path.suffix).upper() not in self.supported_formats and not Path(path).is_dir():
-                print(f"FILE IS MARKED TO BE DELETED {path} because {str(path.suffix).upper()}")
                 path.unlink()
 
     def download_all_images(self,):
@@ -101,16 +101,13 @@ class ImageDownloader:
                     img.transpose(PIL.Image.FLIP_LEFT_RIGHT)
                     img.close()
                 except Exception as exc:
-                    print(f"Image {filepath} is corrupted due to {exc}")
                     if filepath.exists():
                         filepath.unlink()
                     continue
                 img_type = imghdr.what(filepath)
                 if img_type is None:
-                    print(f"{filepath} is not an image")
                     filepath.unlink()
                     continue
-        time.sleep(4)
         conversion_coutner = 0
         for filepath in Path(self.dataset_folder).rglob("*"):
             if filepath.suffix.upper() == ".JPG" or filepath.suffix.upper() == ".PNG":
@@ -121,9 +118,3 @@ class ImageDownloader:
                 img.close()
                 conversion_coutner+=1
                 filepath.unlink()
-        print(f"Total files that were converted is: {conversion_coutner}")
-        time.sleep(4)
-        for filepath in Path(self.dataset_folder).rglob("*"):
-            if filepath.suffix.lower() not in img_type_accepted_by_tf:
-                print(f"{filepath} is a {img_type}, not accepted by TensorFlow")
-                #filepath.unlink()

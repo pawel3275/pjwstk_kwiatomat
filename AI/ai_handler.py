@@ -5,6 +5,8 @@ from pathlib import Path
 import numpy as np
 from .plant_rest_handler import PlantRestHandler
 from difflib import SequenceMatcher
+import time
+tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 
 class AiHandler:
     def __init__(self) -> None:
@@ -28,7 +30,8 @@ class AiHandler:
             self.validation_data,
             self.class_names
         )
-        self.save_model(Path(Path.cwd() / "models" / "testing_model11.h5"))
+        timestr = time.strftime("%Y%m%d-%H%M%S")
+        self.save_model(Path(Path.cwd() / "models" / f"model_{timestr}.h5"))
 
     def save_model(self, path):
         self.model.save(path)
@@ -39,18 +42,22 @@ class AiHandler:
     def compare_strings(self, target_string, string_list):
         max_score = 0
         best_match = ""
+        score = 0
         for string in string_list:
             score = SequenceMatcher(None, target_string, string).ratio()
             if score > max_score:
+                print(f"score is {score}")
                 max_score = score
                 best_match = string
-        print(f"BEST MATCH IS {best_match}")
+        
+        if score < 0.6:
+            best_match = target_string
+
         return best_match
 
     def predict_image(self, server_state, image_path):
-        image_path = "D:/scratch/inzynierka/test_r_r.jpeg"
         image_preprocessor = ImagePreprocessing()
-        input_data = image_preprocessor.rescale_pixels_of_image(image_path)
+        input_data = image_preprocessor.load_image(image_path)
         if not self.model:
             self.load_model(server_state.model_path)
         if not self.class_names:
@@ -59,10 +66,11 @@ class AiHandler:
         prediction = self.model.predict(input_data)
         label = self.class_names[np.argmax(prediction)]
         if self.enable_fallback:
-            fallback_common_name, fallback_plant_name = PlantRestHandler.identify_plant(image_path)
-            print(f"Fallback response is {fallback_common_name} and {fallback_plant_name}")
+            _, fallback_plant_name = PlantRestHandler.identify_plant(image_path)
             label = self.compare_strings(fallback_plant_name, server_state.supported_plants)
 
-        print(f"LABEL IS {label}")
-        print(f"json output will be: \n\n {server_state.plants_info[label]}")
-        return server_state.plants_info[label]
+        if server_state.plants_info.get(label):
+            response = server_state.plants_info[label]
+        else:
+            response = {"Plant name": label}
+        return response

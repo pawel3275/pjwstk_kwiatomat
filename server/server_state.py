@@ -1,6 +1,7 @@
 from pathlib import Path
 import json
 
+
 class ServerState():
     data_downloaded = False
     model_trained = False
