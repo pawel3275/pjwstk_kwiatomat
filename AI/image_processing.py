@@ -4,6 +4,8 @@ import keras.utils as keras_image
 import numpy as np
 import cv2
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
+
+
 class ImagePreprocessing:
     def __init__(self) -> None:        
         self.dataset_path = "dataset"
