@@ -146,29 +146,13 @@
     "Crassula Ovata": {
         "common_name": "Jade Plant",
         "description": "A succulent plant with small, round, fleshy leaves.",
-        "temperature": {
+        "optimal_temperature": {
             "min": 18,
             "max": 24
         },
-        "humidity": {
+        "optimal_humidity": {
             "min": 30,
             "max": 50
-        },
-        "optimal_insolation": {
-            "min": 70,
-            "max": 80
-        }
-    },
-    "Monstera Deliciosa": {
-        "common_name": "Swiss Cheese Plant",
-        "description": "A tropical vine with large, fenestrated leaves.",
-        "temperature": {
-            "min": 18,
-            "max": 27
-        },
-        "humidity": {
-            "min": 40,
-            "max": 60
         },
         "optimal_insolation": {
             "min": 70,
@@ -178,11 +162,11 @@
     "Phalaenopsis": {
         "common_name": "Moth Orchid",
         "description": "An epiphytic orchid with showy, fragrant flowers.",
-        "temperature": {
+        "optimal_temperature": {
             "min": 18,
             "max": 24
         },
-        "humidity": {
+        "optimal_humidity": {
             "min": 50,
             "max": 70
         },
@@ -194,11 +178,11 @@
     "Begonia": {
         "common_name": "Begonia",
         "description": "A flowering plant with showy, colorful blooms.",
-        "temperature": {
+        "optimal_temperature": {
             "min": 18,
             "max": 24
         },
-        "humidity": {
+        "optimal_humidity": {
             "min": 40,
             "max": 60
         },
@@ -210,11 +194,11 @@
     "Calathea": {
         "common_name": "Calathea",
         "description": "A tropical plant with strikingly patterned leaves.",
-        "temperature": {
+        "optimal_temperature": {
             "min": 18,
             "max": 24
         },
-        "humidity": {
+        "optimal_humidity": {
             "min": 60,
             "max": 70
         },

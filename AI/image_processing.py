@@ -7,6 +7,9 @@ tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 
 
 class ImagePreprocessing:
+    """
+    A class for preprocessing images for machine learning.
+    """
     def __init__(self) -> None:        
         self.dataset_path = "dataset"
         self.desired_image_size = (256, 256)
@@ -14,9 +17,21 @@ class ImagePreprocessing:
         self.validation_dataset = None
 
     def preprocess_data(self):
+        """
+        Preprocess image data and prepare for use in a model.
+
+        Returns:
+            tuple: A tuple containing the processed training dataset and validation dataset.
+        """
         return self._prepare_data_for_model()
 
     def _prepare_data_for_model(self):
+        """
+        Private method to preprocess data for use in a model.
+
+        Returns:
+            tuple: A tuple containing the processed training dataset and validation dataset.
+        """
         training_data = tf.keras.preprocessing.image_dataset_from_directory(
             self.dataset_path,
             validation_split=0.2,
@@ -50,6 +65,15 @@ class ImagePreprocessing:
         return (self.train_dataset, self.validation_dataset)
 
     def load_image(self, path):
+        """
+        Load an image from a file path and preprocess it for use in a model.
+
+        Args:
+        path (str): Path to the image file.
+
+        Returns:
+            numpy.ndarray: A preprocessed numpy array representing the image.
+        """
         img = keras_image.load_img(
             path, 
             target_size=self.desired_image_size
@@ -59,9 +83,14 @@ class ImagePreprocessing:
         img_tensor /= 255.
         return img_tensor
 
-
     @staticmethod
     def show_image(image_path):
+        """
+        Display an image from a file path.
+
+        Args:
+            image_path (str): Path to the image file.
+        """
         image = cv2.imread(image_path)
         cv2.imshow(image_path, image)
         cv2.waitKey(0)
