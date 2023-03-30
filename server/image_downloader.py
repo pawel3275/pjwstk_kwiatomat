@@ -36,7 +36,7 @@ class ImageDownloader:
         """
         self.dataset_folder = "dataset"
         self.plant_query_suffix = "plant"
-        self.image_limit = 140
+        self.image_limit = 220
         self.timeout = 2
         self.force_use_bing = False
         self.search_queries = self._load_plants_list()

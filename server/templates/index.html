@@ -1,28 +1,80 @@
-<h1>Welcome on kwiatomat main page!</h1>
-<table>
-    <thead>
-      <tr>
-        <th>Key</th>
-        <th>Value</th>
-      </tr>
-    </thead>
-    <tbody>
-    {% for key, value in result.items() %}
-     <tr>
-         <td> {{ key }} </td>
-         <td> {{ value }} </td>
-     </tr>
-    {% endfor %}
-    </tbody>
-  </table>
-<h1>SERVER APIs</h1>
-<dl>
-  <dt>[POST] /file-upload</dt>
-  <dd>The public API point for file prediction to use it simply run `curl --location --request POST http://localhost:5000/file-upload -F file=@test_r_r.jpeg`</dd>>
-  <dt>[GET] /download-training-data</dt>
-  <dd>Scrape images from internet and preprocess them for the model</dd>>
-  <dt>[GET] /preprocess_data</dt>
-  <dd>Preprocess the data with data augumentation and train model</dd>>
-  <dt>[GET] /predict-image</dt>
-  <dd>Used mostly for debug purposes to predict local image</dd>>
-</dl>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Kwiatomat Main Page</title>
+    <style>
+      /* Add some basic styling to the page */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 36px;
+        margin-bottom: 20px;
+      }
+      table {
+        border-collapse: collapse;
+        margin-bottom: 20px;
+        width: 100%;
+      }
+      th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      dl {
+        margin-bottom: 20px;
+      }
+      dt {
+        font-weight: bold;
+        margin-top: 10px;
+      }
+      dd {
+        margin-left: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Welcome to Kwiatomat</h1>
+    </header>
+    <main>
+      <section>
+        <h2>Results</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Key</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for key, value in result.items() %}
+            <tr>
+              <td>{{ key }}</td>
+              <td>{{ value }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </section>
+      <section>
+        <h2>Server APIs</h2>
+        <dl>
+          <dt>[POST] /file-upload</dt>
+          <dd>The public API endpoint for file prediction. To use it, simply run <code>curl --location --request POST http://localhost:5000/file-upload -F file=@test_r_r.jpeg</code></dd>
+          <dt>[GET] /download-training-data</dt>
+          <dd>Scrape images from the internet and preprocess them for the model</dd>
+          <dt>[GET] /preprocess_data</dt>
+          <dd>Preprocess the data with data augmentation and train the model</dd>
+          <dt>[GET] /predict-image</dt>
+          <dd>Used mostly for debugging purposes to predict a local image</dd>
+        </dl>
+      </section>
+    </main>
+  </body>
+</html>

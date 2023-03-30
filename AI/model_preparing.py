@@ -1,5 +1,10 @@
 import tensorflow as tf
+
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
+import datetime
+from pathlib import Path
+
+import matplotlib.pyplot as plt
 
 
 class MlModel:
@@ -12,7 +17,7 @@ class MlModel:
         self.image_channels = 3  # RGB
         self.batch_size = 8
         self.validation_split = 0.3
-        self.epochs = 65
+        self.epochs = 70
 
     def prepare_model(self, training_data, validation_data, class_names):
         """
@@ -30,14 +35,21 @@ class MlModel:
 
         data_augmentation = tf.keras.Sequential(
             [
-                tf.keras.layers.experimental.preprocessing.RandomFlip("vertical",
-                                                                      input_shape=(self.image_width,
-                                                                                   self.image_height,
-                                                                                   3)),
+                tf.keras.layers.experimental.preprocessing.RandomFlip(
+                    "vertical",
+                    input_shape=(
+                        self.image_width,
+                        self.image_height,
+                        3
+                    )
+                ),
                 tf.keras.layers.experimental.preprocessing.RandomRotation(0.4),
                 tf.keras.layers.experimental.preprocessing.RandomZoom(0.3),
                 tf.keras.layers.experimental.preprocessing.RandomTranslation(
-                    height_factor=0.2, width_factor=0.2, fill_mode="wrap"),
+                    height_factor=0.2, 
+                    width_factor=0.2, 
+                    fill_mode="wrap"
+                ),
                 tf.keras.layers.experimental.preprocessing.RandomContrast(
                     factor=0.2)
             ]
@@ -47,32 +59,68 @@ class MlModel:
             data_augmentation,
             tf.keras.layers.Resizing(
                 self.image_height, self.image_width, interpolation="bilinear", crop_to_aspect_ratio=True),
-            tf.keras.layers.Conv2D(46, 3, activation='relu'),
-            tf.keras.layers.MaxPooling2D(),
-            tf.keras.layers.Conv2D(64, 3, activation='relu'),
-            tf.keras.layers.MaxPooling2D(),
-            tf.keras.layers.Flatten(),
-            tf.keras.layers.Dense(60, activation='relu'),
-            tf.keras.layers.Dropout(0.5),
-            tf.keras.layers.Dense(48, activation='relu'),
-            tf.keras.layers.Dropout(0.2),
-            tf.keras.layers.Dense(num_classes)
-        ])
+                tf.keras.layers.Conv2D(64, (3,3), activation='relu', input_shape=(self.image_height, self.image_width, 3)),
+                tf.keras.layers.MaxPooling2D((2, 2)),
+                tf.keras.layers.Conv2D(128, (3, 3), activation='relu'),
+                tf.keras.layers.MaxPooling2D((2, 2)),
+                tf.keras.layers.Conv2D(256, (3, 3), activation='relu'),
+                tf.keras.layers.MaxPooling2D((2, 2)),
+                tf.keras.layers.Conv2D(64, (3, 3), activation='relu'),
+                tf.keras.layers.MaxPooling2D((2, 2)),
+                tf.keras.layers.Flatten(),
+                tf.keras.layers.Dense(256, activation='relu'),
+                tf.keras.layers.Dropout(0.3),
+                tf.keras.layers.Dense(64, activation='relu'),
+                tf.keras.layers.Dense(num_classes, activation='softmax')
+            ])
 
-        optimizer = tf.keras.optimizers.Adam(lr=0.01)
-        #optimizer = tf.keras.optimizers.experimental.SGD(lr=0.01)
+
+        lr_schedule = tf.keras.optimizers.schedules.ExponentialDecay(
+            initial_learning_rate=0.001,
+            decay_steps=10000,
+            decay_rate=0.9)
 
         model.compile(
-            optimizer=optimizer,
-            loss=tf.losses.SparseCategoricalCrossentropy(from_logits=True),
+            optimizer=tf.keras.optimizers.Adam(learning_rate=lr_schedule),
+            loss=tf.losses.SparseCategoricalCrossentropy(),
             metrics=['accuracy']
         )
 
-        model.fit(
+        early_stopping = tf.keras.callbacks.EarlyStopping(
+            monitor='val_loss',
+            patience=5,
+            restore_best_weights=True
+        )
+
+        history = model.fit(
             training_data,
             validation_data=validation_data,
             epochs=self.epochs,
+            batch_size=self.batch_size,
             shuffle=True,
-            validation_split=self.validation_split
+            validation_split=self.validation_split,
+            callbacks=[early_stopping]
         )
+
+        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        chart_file = Path(f"models/model_{timestamp}.png")
+        # plot training and validation accuracy values
+        plt.plot(history.history['accuracy'])
+        plt.plot(history.history['val_accuracy'])
+        plt.title('Model accuracy')
+        plt.ylabel('Accuracy')
+        plt.xlabel('Epoch')
+        plt.legend(['Train', 'Validation'], loc='upper left')
+        plt.savefig('accuracy.png')
+
+        # plot training and validation loss values
+        plt.clf()
+        plt.plot(history.history['loss'])
+        plt.plot(history.history['val_loss'])
+        plt.title('Model loss')
+        plt.ylabel('Loss')
+        plt.xlabel('Epoch')
+        plt.legend(['Train', 'Validation'], loc='upper left')
+        plt.savefig(chart_file)
+
         return model
