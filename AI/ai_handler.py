@@ -100,7 +100,7 @@ class AiHandler:
 
         return best_match
 
-    def predict_image(self, server_state, image_path):
+    def predict_image(self, server_state, image_path, use_beit=False):
         """
         Predicts the type of plant from an input image.
 
@@ -121,8 +121,11 @@ class AiHandler:
         if not self.class_names:
             self.class_names = server_state.supported_plants
 
-        prediction = self.model.predict(input_data)
-        label = self.class_names[np.argmax(prediction)]
+        if use_beit:
+            label = self.model_preprocessor.use_beit_model(image_path=image_path)
+        else:
+            prediction = self.model.predict(input_data)
+            label = self.class_names[np.argmax(prediction)]
         if self.enable_fallback:
             _, fallback_plant_name = PlantRestHandler.identify_plant(image_path)
             label = self.compare_strings(fallback_plant_name, server_state.supported_plants)
@@ -132,3 +135,4 @@ class AiHandler:
         else:
             response = {"Plant name": label}
         return response
+

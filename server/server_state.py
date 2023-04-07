@@ -1,5 +1,6 @@
-from pathlib import Path
+import glob
 import json
+from pathlib import Path
 
 
 class ServerState():
@@ -77,13 +78,12 @@ class ServerState():
         """
         if not cls.model_path:
             path = cls.model_dir
-            models = list(path.iterdir())
+            models = list(path.glob("*.h5"))  # Filter only files with .h5 extension
             if models:
                 cls.model_path = models[0]
                 cls.model_trained = True
             else:
-                print(
-                    f"Directory of {path} is empty! Iterdir returned: {models}")
+                print(f"No .h5 model files found in directory: {path}")
         else:
             print(f"Model already in use: {cls.model_path}")
 

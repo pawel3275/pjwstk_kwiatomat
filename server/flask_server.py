@@ -38,8 +38,8 @@ def allowed_file(filename):
 	return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-@app.route('/file-upload', methods=['POST'])
-def upload_file():
+@app.route('/predict', methods=['POST'])
+def predict():
     """
     Handles file uploads from clients and returns predictions.
 
@@ -150,32 +150,48 @@ def preprocess_data():
         return jsonify({'error': 'An unexpected error occurred.'}), 500
 
 
-@app.route('/predict-image', methods=["GET"])
-def predict_image():
+@app.route('/predict-beit', methods=["POST"])
+def predict_beit():
     """
     Route function to predict image using the trained AI model.
 
     Returns:
         str: A JSON object with a success message and a status code.
     """
-    try:
-        handler = AiHandler()
-        handler.predict_image(server_state, "dummy_path")
-        resp = jsonify({'message': 'PREDICTION DONE'})
-        resp.status_code = 200
+    if 'file' not in request.files:
+        resp = jsonify({'message' : 'No file part in the request'})
+        resp.status_code = 400
         return resp
 
-    except BadRequest as e:
-        logging.exception(e)
-        return jsonify({'error': str(e)}), 400
+    file = request.files['file']
 
-    except NotFound as e:
-        logging.exception(e)
-        return jsonify({'error': str(e)}), 404
+    if file.filename == '':
+        resp = jsonify({'message' : 'No file selected for uploading'})
+        resp.status_code = 400
+        return resp
 
-    except Exception as e:
-        logging.exception(e)
-        return jsonify({'error': 'An unexpected error occurred.'}), 500
+    if file and allowed_file(file.filename):
+        try:
+            filename = secure_filename(file.filename)
+            path_for_image = Path(app.config['UPLOAD_FOLDER'] / filename)
+            file.save(path_for_image)
+
+            handler = AiHandler()
+            response = handler.predict_image(server_state, path_for_image, use_beit=True)
+
+            path_for_image.unlink()
+            resp = jsonify({'message' : response})
+            resp.status_code = 201
+            return resp
+
+        except Exception as e:
+            resp = jsonify({'message' : f'An error occurred while processing the image: {str(e)}'})
+            resp.status_code = 500
+            return resp
+    else:
+        resp = jsonify({'message' : f'Allowed file types are txt, pdf, png, jpg, jpeg, gif'})
+        resp.status_code = 400
+        return resp
 
 
 @app.route('/health-check', methods=["GET"])
