@@ -133,17 +133,17 @@ class MlModel:
             self.get_data_augmentation(),
             tf.keras.layers.Resizing(
                 self.image_height, self.image_width, interpolation="bilinear", crop_to_aspect_ratio=True),
-            tf.keras.layers.Conv2D(32, (3, 3), activation='relu', input_shape=(
+            tf.keras.layers.Conv2D(38, (3, 3), activation='relu', input_shape=(
                 self.image_height, self.image_width, 3)),
             tf.keras.layers.MaxPooling2D((2, 2)),
-            tf.keras.layers.Conv2D(16, (3, 3), activation='relu'),
+            tf.keras.layers.Conv2D(24, (3, 3), activation='relu'),
             tf.keras.layers.MaxPooling2D((2, 2)),
-            tf.keras.layers.Conv2D(16, (3, 3), activation='relu'),
+            tf.keras.layers.Conv2D(18, (3, 3), activation='relu'),
             tf.keras.layers.MaxPooling2D((2, 2)),
             tf.keras.layers.Flatten(),
-            tf.keras.layers.Dense(64, activation='relu'),
+            tf.keras.layers.Dense(92, activation='relu'),
             tf.keras.layers.Dropout(0.3),
-            tf.keras.layers.Dense(36, activation='relu'),
+            tf.keras.layers.Dense(56, activation='relu'),
             tf.keras.layers.Dense(num_classes, activation='softmax')
         ])
         return model

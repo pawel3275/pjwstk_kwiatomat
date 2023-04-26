@@ -7,4 +7,9 @@ matplotlib
 opencv-python
 opendatasets
 pandas
+seaborn
+scikit-learn
 tensorflow
+tensorflow-addons
+transformers
+vit_keras

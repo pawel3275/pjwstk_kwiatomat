@@ -3,11 +3,13 @@ import json
 import os
 import shutil
 from pathlib import Path
-import PIL
 
+import PIL
 from bing_image_downloader import downloader
 from duckduckgo_search import \
     ddg_images  # https://pypi.org/project/duckduckgo-search/
+
+from exceptions import DdgDownloaderError, MissingFolderException
 
 
 class ImageDownloader:
@@ -36,7 +38,7 @@ class ImageDownloader:
         """
         self.dataset_folder = "dataset"
         self.plant_query_suffix = "plant"
-        self.image_limit = 220
+        self.image_limit = 350
         self.timeout = 2
         self.force_use_bing = False
         self.search_queries = self._load_plants_list()
@@ -93,7 +95,7 @@ class ImageDownloader:
         )
 
         if not response:
-            pass  # TODO: throw exception here
+            raise DdgDownloaderError(response)
         folder_str = f"ddg_images_{query}"
         folder_path = [f for f in Path.cwd().iterdir() if folder_str in f.stem]
         if folder_path:
@@ -109,8 +111,7 @@ class ImageDownloader:
                     each_file.unlink()
             shutil.rmtree(folder_path[0])
         else:
-            print(f"Folder {folder_str} not found")
-            pass  # TODO: throw exception here
+            raise MissingFolderException(folder_path)
 
     def remove_unwanted_files(self):
         """Removes files with unsupported file extensions from the `dataset` directory.

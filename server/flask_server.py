@@ -4,18 +4,18 @@ import sys
 
 sys.path.append("..")
 
-from pathlib import Path
 import json
 import logging
+from pathlib import Path
+
 from flask import Flask, jsonify, render_template, request
-from flask_swagger import swagger
-from werkzeug.utils import secure_filename
 from werkzeug.exceptions import BadRequest, NotFound
+from werkzeug.utils import secure_filename
+
 from AI.ai_handler import AiHandler
 from server.server_state import ServerState
 
 from .image_downloader import ImageDownloader
-
 
 UPLOAD_FOLDER = Path(Path.cwd() / "file_uploads")
 ALLOWED_EXTENSIONS = {"png", "jpeg", "jpg"}
@@ -189,7 +189,7 @@ def predict_beit():
             resp.status_code = 500
             return resp
     else:
-        resp = jsonify({'message' : f'Allowed file types are txt, pdf, png, jpg, jpeg, gif'})
+        resp = jsonify({'message' : f'Allowed file types are {ALLOWED_EXTENSIONS}'})
         resp.status_code = 400
         return resp
 
