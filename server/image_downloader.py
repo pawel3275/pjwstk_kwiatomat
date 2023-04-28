@@ -9,8 +9,7 @@ from bing_image_downloader import downloader
 from duckduckgo_search import \
     ddg_images  # https://pypi.org/project/duckduckgo-search/
 
-from exceptions import DdgDownloaderError, MissingFolderException
-
+from exceptions.exception_handler import DdgDownloaderError, MissingFolderException
 
 class ImageDownloader:
     """

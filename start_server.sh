@@ -40,4 +40,4 @@ while getopts ":e:d:" opt; do
 done
 
 # Start the Flask server
-python -m flask run
+python3 -m flask run
