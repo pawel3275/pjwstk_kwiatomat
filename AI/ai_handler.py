@@ -17,7 +17,7 @@ class AiHandler:
     """
 
     def __init__(self) -> None:
-        self.enable_fallback = False
+        self.enable_fallback = True
         self.model_preprocessor = MlModel()
         self.model_path = None
         self.validation_data = None

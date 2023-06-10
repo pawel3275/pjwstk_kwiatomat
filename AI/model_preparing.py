@@ -88,7 +88,7 @@ class MlModel:
             self.get_data_augmentation(),
             pretrained_model,
             tf.keras.layers.Flatten(),
-            tf.keras.layers.Dense(256, activation='relu'),
+            tf.keras.layers.Dense(88, activation='relu'),
             tf.keras.layers.Dropout(0.3),
             tf.keras.layers.Dense(64, activation='relu'),
             tf.keras.layers.Dense(num_classes, activation='softmax')
@@ -133,17 +133,15 @@ class MlModel:
             self.get_data_augmentation(),
             tf.keras.layers.Resizing(
                 self.image_height, self.image_width, interpolation="bilinear", crop_to_aspect_ratio=True),
-            tf.keras.layers.Conv2D(38, (3, 3), activation='relu', input_shape=(
+            tf.keras.layers.Conv2D(112, (3, 3), activation='relu', input_shape=(
                 self.image_height, self.image_width, 3)),
             tf.keras.layers.MaxPooling2D((2, 2)),
-            tf.keras.layers.Conv2D(24, (3, 3), activation='relu'),
-            tf.keras.layers.MaxPooling2D((2, 2)),
-            tf.keras.layers.Conv2D(18, (3, 3), activation='relu'),
+            tf.keras.layers.Conv2D(68, (3, 3), activation='relu'),
             tf.keras.layers.MaxPooling2D((2, 2)),
             tf.keras.layers.Flatten(),
-            tf.keras.layers.Dense(92, activation='relu'),
+            tf.keras.layers.Dense(128, activation='relu'),
             tf.keras.layers.Dropout(0.3),
-            tf.keras.layers.Dense(56, activation='relu'),
+            tf.keras.layers.Dense(68, activation='relu'),
             tf.keras.layers.Dense(num_classes, activation='softmax')
         ])
         return model
@@ -244,7 +242,7 @@ class MlModel:
 
         early_stopping = tf.keras.callbacks.EarlyStopping(
             monitor='val_loss',
-            patience=5,
+            patience=10,
             restore_best_weights=True
         )
 
